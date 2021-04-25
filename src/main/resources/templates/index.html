@@ -51,7 +51,7 @@
         },
         mounted() {
           axios
-            .get("http://azvm.lol320.work:8080/api/v1/work-items")
+            .get("http://localhost:8080/api/v1/work-items")
             .then((response) => (this.item = response.data));
         },
       });
