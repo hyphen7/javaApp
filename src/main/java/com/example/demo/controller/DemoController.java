@@ -19,7 +19,7 @@ import com.example.demo.entity.Item;
 import com.example.demo.service.WorkItemService;
 
 @RestController
-@RequestMapping("/api/v1/work-items")
+@RequestMapping(value = "/api/v1/work-items", produces = "application/json;charset=UTF-8")
 public class DemoController {
 
 	@Autowired
