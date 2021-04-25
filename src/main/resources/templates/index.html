@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello, Spring via Docker.</h1>
+    <p>Dockerによって作成されました。ありがとうございます。</p>
+    <div id="app" v-cloak>
+      <table>
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Business</td>
+            <td>Theme</td>
+            <td>Date</td>
+            <td>Detail</td>
+            <td>Name</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in item" :key="item.path">
+            <td>{{ item.id }}</td>
+            <td>{{ item.business }}</td>
+            <td>{{ item.theme }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.detail }}</td>
+            <td>{{ item.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            item: null
+          }
+        },
+        mounted() {
+          axios
+            .get("http://localhost:8080/api/v1/work-items")
+            .then((response) => (this.item = response.data));
+        },
+      });
+    </script>
+  </body>
+</html>
